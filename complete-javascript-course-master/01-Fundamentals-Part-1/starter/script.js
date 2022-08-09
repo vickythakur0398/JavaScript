@@ -68,8 +68,8 @@ m tall.
 § Data 2: Marks weights 95 kg and is 1.88 m tall. John weights 85 kg and is 1.76 
 m tall.
 GOOD LUCK �
-*/
 
+//solution 
 let markH, johnH, markW, johnW;
 markH = 1.88; //1.69;
 markW = 95; //78;
@@ -94,3 +94,142 @@ const d = 4;
 console.log(d ** 2);
 console.log(d * 2);
 console.log(d * d);
+
+*/
+/*
+//strings
+fName = "vicky";
+lName = "Thakur";
+cYear = 2022;
+bYear = 1998;
+
+const full = `I'm ${fName} and I am ${cYear - bYear} old`;
+const ful = "I'm" + fName + "I'm" + (cYear - bYear) + " old";
+console.log(full);
+console.log(ful);
+
+const vick = `ram
+is 
+good 
+boy`;
+console.log(vick);
+*/
+
+//coding challenge 2 I did earlier
+/*
+//Type conversion and Type coercion
+
+
+const imput = `1991`;
+console.log(imput + 18);
+console.log(Number(imput) + 18);
+console.log("I am " + String(24) + " Years old");
+//Type coercion
+
+console.log("I am " + 23 + " Years old h");
+console.log("16" + `03` + `1998`);
+console.log(`1998` - `03` - 16);
+*/
+/*
+//trtuthsy and falsy value
+console.log(Boolean(0));
+console.log(Boolean("vicky"));
+
+const money = 00;
+if (money) {
+  console.log("Enjoy with the riches");
+} else {
+  console.log("Get some job ");
+}
+
+*/
+
+/*
+// type coercon
+console.log(18 == "18");
+console.log(18 === "18");
+const favt = prompt("wat to put");
+console.log(typeof favt);
+*/
+/*
+//bollean operator
+const has = true;
+const not = false;
+
+console.log(has && not);
+console.log(has || not);
+console.log(has && !not);
+
+Coding Challenge #3
+There are two gymnastics teams, Dolphins and Koalas. They compete against each 
+other 3 times. The winner with the highest average score wins a trophy!
+Your tasks:
+1. Calculate the average score for each team, using the test data below
+2. Compare the team's average scores to determine the winner of the competition, 
+and print it to the console. Don't forget that there can be a draw, so test for that 
+as well (draw means they have the same average score)
+3. Bonus 1: Include a requirement for a minimum score of 100. With this rule, a 
+team only wins if it has a higher score than the other team, and the same time a 
+score of at least 100 points. Hint: Use a logical operator to test for minimum 
+score, as well as multiple else-if blocks �
+4. Bonus 2: Minimum score also applies to a draw! So a draw only happens when 
+both teams have the same score and both have a score greater or equal 100 
+points. Otherwise, no team wins the trophy
+Test data:
+§ Data 1: Dolphins score 96, 108 and 89. Koalas score 88, 91 and 110
+§ Data Bonus 1: Dolphins score 97, 112 and 101. Koalas score 109, 95 and 123
+§ Data Bonus 2: Dolphins score 97, 112 and 101. Koalas score 109, 95 and 106*/
+
+let d;
+let k;
+let avg = 0;
+let avgg = 0;
+
+let avgd = (96 + 108 + 89) / 3;
+let avgk = (88 + 91 + 110) / 3;
+let con = "";
+
+let avgdd = (97 + 112 + 811) / 3;
+let avgkk = (109 + 95 + 50) / 3;
+let conn = "";
+
+console.log("series first");
+
+if (avgd > avgk) {
+  avg = avgd;
+  con = "avgd";
+} else if (avg === avgk) {
+  avg = 0;
+  con = "draw";
+} else {
+  avg = avgk;
+  con = "avgk";
+}
+
+if (avg < 100) {
+  console.log(`no one won the trrophy ${avgd} ${avgk}`);
+  // console.log(`${con} won the series by scoring ${avg}`);
+} else if (avg === 100) {
+  console.log("series is won by draw");
+} else {
+  console.log(`${con} won the match  by scoring ${avg}`);
+}
+
+// there is another methoid also by using operator
+//m2
+
+console.log("new series with methd2");
+
+if (avgdd > avgkk && avgdd > 100) {
+  console.log(
+    `dolphins are champ they scored ${avgdd} while koala loosers scored ${avgkk}`
+  );
+} else if (avgkk > avgdd && avgkk > 100) {
+  console.log(
+    `koalas are champ they scored ${avgkk} while dolphin loosers scored ${avgdd}`
+  );
+} else if (avgdd === avgkk && avgdd > 100) {
+  console.log("match is draw");
+} else {
+  console.log(`no one won`);
+}
