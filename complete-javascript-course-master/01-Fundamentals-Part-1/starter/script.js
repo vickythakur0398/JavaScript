@@ -178,7 +178,7 @@ points. Otherwise, no team wins the trophy
 Test data:
 § Data 1: Dolphins score 96, 108 and 89. Koalas score 88, 91 and 110
 § Data Bonus 1: Dolphins score 97, 112 and 101. Koalas score 109, 95 and 123
-§ Data Bonus 2: Dolphins score 97, 112 and 101. Koalas score 109, 95 and 106*/
+§ Data Bonus 2: Dolphins score 97, 112 and 101. Koalas score 109, 95 and 106
 
 let d;
 let k;
@@ -220,16 +220,71 @@ if (avg < 100) {
 
 console.log("new series with methd2");
 
-if (avgdd > avgkk && avgdd > 100) {
+if (avgdd > avgkk && avgdd >= 100) {
   console.log(
     `dolphins are champ they scored ${avgdd} while koala loosers scored ${avgkk}`
   );
-} else if (avgkk > avgdd && avgkk > 100) {
+} else if (avgkk > avgdd && avgkk >= 100) {
   console.log(
     `koalas are champ they scored ${avgkk} while dolphin loosers scored ${avgdd}`
   );
-} else if (avgdd === avgkk && avgdd > 100) {
+} else if (avgdd === avgkk && avgdd >= 100) {
   console.log("match is draw");
 } else {
   console.log(`no one won`);
 }
+
+//switch
+let day = "wednesday";
+
+if (day === "monday") {
+  console.log(`hi i am mmonday`);
+} else if (day === "tuesday") {
+  console.log("hi i am tueday");
+} else if (day === "wednesday" || day == "thursay") {
+  console.log("we have both");
+} else {
+  console.log(`okay`);
+}
+
+switch (day) {
+  case "monday":
+    console.log(`I am monday`);
+    break;
+  case "tueday":
+    console.log(`I am tuesday`);
+    break;
+  case "wednesday":
+  case "thurday":
+    console.log(`iAM both`);
+  default:
+    console.log(`okay`);
+}
+*/
+/*
+//ternanry operator
+const age = 23;
+age >= 18 ? console.log(`I am an adult`) : console.log(`i am bachha`);
+Coding Challenge #4
+Steven wants to build a very simple tip calculator for whenever he goes eating in a 
+restaurant. In his country, it's usual to tip 15% if the bill value is between 50 and 
+300. If the value is different, the tip is 20%.
+Your tasks:
+1. Calculate the tip, depending on the bill value. Create a variable called 'tip' for 
+this. It's not allowed to use an if/else statement � (If it's easier for you, you can 
+start with an if/else statement, and then try to convert it to a ternary 
+operator!)
+2. Print a string to the console containing the bill value, the tip, and the final value 
+(bill + tip). Example: “The bill was 275, the tip was 41.25, and the total value 
+316.25”
+Test data:
+§ Data 1: Test for bill values 275, 40 and 430*/
+
+let tip;
+let bill = 40;
+let value;
+value = bill >= 50 && bill <= 300 ? (value = 15) : (value = 20);
+
+console.log(value);
+tip = (value / 100) * bill;
+console.log(`Bill was ${bill}, tip was ${tip} and the total was ${tip + bill}`);
