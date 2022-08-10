@@ -66,7 +66,7 @@ Data 2
 Test data:
 § Data 1: Dolphins score 44, 23 and 71. Koalas score 65, 54 and 49
 § Data 2: Dolphins score 85, 54 and 41. Koalas score 23, 34 and 27
-*/
+
 // let a,b,c;
 const average = (a, b, c) => {
   return (a + b + c) / 3;
@@ -86,3 +86,113 @@ function checkWinner(davg, kola) {
 }
 
 checkWinner(davg, kola);
+*/
+/*
+//Array
+const arr = [1, 2, 34, 5];
+const friends = ["vicky", "tirupati", "batohi"];
+console.log(arr);
+
+console.log(friends[0]);
+console.log(friends.length);
+
+friends[1] = "Honey";
+console.log(friends);
+
+const fName = "vicky";
+const arrr = [fName, "thakur", 2022 - 1998, friends];
+console.log(arrr);
+console.log(arrr.length);
+console.log(arrr[3][1]);
+
+//excerice
+
+const calAge = (years) => {
+  return years - 1998;
+};
+
+const year = [2022, 2025, 2028, 2037, 2043];
+const ans = [];
+
+for (let i = 0; i <= year.length - 1; i++) {
+  ans[i] = calAge(year[i]);
+}
+
+console.log(ans);
+
+*/
+/*
+//ARRAY operation
+
+const friends = ["vikcy", "sam", "gaurav"];
+let nl = friends.push(11);
+console.log(nl, friends);
+nl = friends.push(5, "ram", "shyam");
+console.log(friends, nl);
+
+nl = friends.unshift("Ram", "laxman");
+console.log(friends, nl);
+
+let val = friends.pop();
+console.log(friends, val);
+
+val = friends.shift();
+console.log(friends, val);
+
+val = friends.indexOf("laman");
+console.log(friends, val);
+
+val = friends.includes("saam");
+console.log(friends, val);
+
+*/
+/*
+Coding Challenge #2
+Steven is still building his tip calculator, using the same rules as before: Tip 15% of 
+the bill if the bill value is between 50 and 300, and if the value is different, the tip is 
+20%.
+Your tasks:
+1. Write a function 'calcTip' that takes any bill value as an input and returns 
+the corresponding tip, calculated based on the rules above (you can check out 
+the code from first tip calculator challenge if you need to). Use the function 
+type you like the most. Test the function using a bill value of 100
+2. And now let's use arrays! So create an array 'bills' containing the test data 
+below
+3. Create an array 'tips' containing the tip value for each bill, calculated from 
+the function you created before
+4. Bonus: Create an array 'total' containing the total values, so the bill + tip
+Test data: 125, 555 and 44*/
+
+const calcTip = (avgV) => {
+  if (avgV >= 50 && avgV <= 300) {
+    return 0.15 * avgV;
+  } else {
+    return 0.2 * avgV;
+  }
+};
+
+const bill = [125, 555, 44];
+console.log(bill);
+const tip = [];
+for (let i = 0; i <= bill.length - 1; i++) {
+  let val = calcTip(bill[i]);
+  tip.push(val);
+  bill[i] += val;
+}
+console.log(tip);
+console.log(bill);
+
+//m-2 - i copied it bcs i did it in a differet way using loop and this is also simple
+/*
+const calcTip = function (bill) {
+  return bill >= 50 && bill <= 300 ? bill * 0.15 : bill * 0.2;
+}
+// const calcTip = bill => bill >= 50 && bill <= 300 ? bill * 0.15 : bill * 0.2;
+
+const bills = [125, 555, 44];
+const tips = [calcTip(bills[0]), calcTip(bills[1]), calcTip(bills[2])];
+const totals = [bills[0] + tips[0], bills[1] + tips[1], bills[2] + tips[2]];
+
+console.log(bills, tips, totals);
+
+*/
