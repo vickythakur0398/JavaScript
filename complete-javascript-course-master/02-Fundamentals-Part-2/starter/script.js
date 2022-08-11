@@ -162,7 +162,7 @@ below
 the function you created before
 4. Bonus: Create an array 'total' containing the total values, so the bill + tip
 Test data: 125, 555 and 44*/
-
+/*
 const calcTip = (avgV) => {
   if (avgV >= 50 && avgV <= 300) {
     return 0.15 * avgV;
@@ -181,7 +181,7 @@ for (let i = 0; i <= bill.length - 1; i++) {
 }
 console.log(tip);
 console.log(bill);
-
+*/
 //m-2 - i copied it bcs i did it in a differet way using loop and this is also simple
 /*
 const calcTip = function (bill) {
@@ -196,3 +196,87 @@ const totals = [bills[0] + tips[0], bills[1] + tips[1], bills[2] + tips[2]];
 console.log(bills, tips, totals);
 
 */
+/*
+// Object
+
+const vicky = {
+  firstname: "vicky",
+  age: 2022 - 1998,
+  emp: "Tcs",
+  job: "developer",
+  friends: ["sam", "gaurav", "adi"],
+};
+
+console.log(vicky);
+console.log(vicky.age, vicky.emp, vicky.job);
+//using bracket notation
+console.log(vicky["age"], vicky["emp"], vicky["friends"]);
+
+const namek = "name";
+console.log(vicky[`first` + namek]);
+vicky.location = "India";
+vicky.twitter = "@vickythakur0398";
+const value = prompt("put any value defined in object");
+console.log(vicky.value); //op will be undefined
+console.log(vicky[value]);
+// const bol = vicky.includes(vicky[value]);
+// console.log(bol);
+if (vicky[value]) {
+  console.log(vicky[value]);
+} else {
+  console.log("value doesnt exist");
+}
+
+//challenge
+console.log(
+  `${vicky.firstname} has ${vicky.friends.length} "friends name as " ${vicky["friends"]}
+  his best friend is  ${vicky.friends[0]}`
+);
+*/
+/*
+const vicky = {
+  firstName: "vicky",
+  job: "tcs",
+  role: "developer",
+  birthYear: 1998,
+  hasDriverLicense: true,
+  //ading method
+  calcAge: function (birthYear) {
+    // console.log(this);
+    return 2022 - birthYear; //this.birthYear;
+  },
+
+ 
+
+};
+
+let age = vicky.calcAge(1999);
+console.log(age);
+age = vicky["calcAge"](1998);
+console.log(age);
+
+*/
+const vicky = {
+  firstName: "vicky",
+  job: "tcs",
+  role: "developer",
+  birthYear: 1998,
+  hasDriverLicense: false,
+  //ading method
+  calcAge: function () {
+    // console.log(this);
+    this.age = 2022 - this.birthYear;
+    return this.age; //this.birthYear;
+  },
+
+  summaryC: function () {
+    this.summary = `${this.firstName} is a ${vicky.calcAge()} years old  ${
+      this.role
+    } and has
+    ${this.hasDriverLicense ? "a" : "no"} driver's license.`;
+
+    return this.summary;
+  },
+};
+
+console.log(vicky.summaryC());
