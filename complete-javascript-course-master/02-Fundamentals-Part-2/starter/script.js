@@ -1,4 +1,4 @@
-"use strict";
+'use strict';
 /*
 function logger() {
   console.log("Hello world");
@@ -390,7 +390,7 @@ added together
 4.2. To calculate the average, divide the sum you calculated before by the 
 length of the array (because that's the number of elements)
 4.3. Call the function with the 'totals' array
-GOOD LUCK */
+GOOD LUCK 
 
 const bill = [22, 295, 176, 440, 37, 105, 10, 1100, 86, 52];
 let tip = [];
@@ -424,3 +424,4 @@ console.log(calcAvg([2, 3, 7]));
 console.log(calcAvg(bill));
 console.log(calcAvg(total));
 console.log(calcAvg(tip));
+*/
