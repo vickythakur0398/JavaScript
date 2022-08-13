@@ -24,3 +24,21 @@ overlay.addEventListener('click', () => {
   modal.classList.add('hidden');
   overlay.classList.add('hidden');
 });
+
+//Handling jkeyboard event
+// closing modal on pressing esc key
+document.addEventListener('keydown', function (e) {
+  // console.log(e.key);
+  let val = e.key;
+  if (val === 'Escape') {
+    //checking whether modal is visible or not
+    if (!modal.classList.contains('.hidden')) {
+      modal.classList.add('hidden');
+      console.log(e.key);
+      overlay.classList.add('hidden');
+      // console.log(e.key);
+    } else {
+      console.log('just chill as modal is not on screen');
+    }
+  }
+});
