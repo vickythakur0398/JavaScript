@@ -26,4 +26,63 @@ const restaurant = {
       close: 24,
     },
   },
+  order: function (starterIndex, mainMenu) {
+    return [this.starterMenu[starterIndex], this.mainMenu[mainMenu]];
+  },
 };
+
+//object destructing
+const { name, openingHours, categories } = restaurant;
+console.log(name, openingHours, categories);
+
+// naming variable differnet from property name
+console.log('nested');
+const {
+  name: restuarantName,
+  openingHours: hours = [],
+  categories: tags,
+  menu,
+} = restaurant;
+console.log(restuarantName, hours, tags, menu);
+
+//nested object
+const { fri } = openingHours;
+console.log('nes');
+console.log(fri);
+const {
+  fri: { open: fir, close: firse },
+} = openingHours;
+console.log('nested inside nested');
+console.log(fir, firse);
+
+/*
+// array destructuring
+console.log("array destructuring")
+let [first, , , second] = restaurant.categories;
+console.log(first, second);
+// if we want to switch secomd and thjen first (switching variale)
+[first, second] = [second, first];
+console.log(first, second);
+
+console.log('check');
+let [o1, o2] = restaurant.order(2, 0);
+console.log(o1, o2);
+/*
+// using array desturcting for function storing
+const add = function (a, b) {
+  return [a * a, b * b];
+};
+
+let [c] = add(2, 3);
+console.log(c);
+
+
+//nested array
+const nested = [2, 3, [4, 5, 6]];
+const [a, , b] = [2, 3, [4, 5, 6]];
+
+console.log(a, b);
+
+const [z, , [b1, b2, b3]] = [2, 3, [4, 5, 6]];
+console.log(z, b1, b2, b3);
+*/
