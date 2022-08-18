@@ -259,7 +259,7 @@ average, every 9 minutes" (keep in mind that a game has 90 minutes)
 4. Loop over 'gameEvents' and log each element to the console, marking 
 whether it's in the first half or second half (after 45 min) of the game, like this:
 [FIRST HALF] 17: ⚽ GOAL
-*/
+
 
 const game = {
   team1: 'Bayern Munich',
@@ -406,3 +406,53 @@ for (let [key, value] of gameEvents.entries()) {
     ? console.log(`[first half] ${key} ${value} happened`)
     : console.log(`[second half] ${key} ${value} happened`);
 }
+
+// string
+const pass = 'ViCKy';
+const changed = pass.toLowerCase();
+console.log(changed);
+const ch = changed[0].toUpperCase() + changed.slice(1);
+console.log(ch);
+
+const str = 'my+name+is+hardworking+worker';
+console.log(str.split('+'));
+
+const namee = 'vikcy Thakur'.split(' ');
+console.log(namee);
+const uName = namee[0][0].toLowerCase();
+console.log(uName.splice(1));
+*/
+/*
+Coding Challenge #4
+Write a program that receives a list of variable names written in underscore_case 
+and convert them to camelCase.
+The input will come from a textarea inserted into the DOM (see code below to 
+insert the elements), and conversion will happen when the button is pressed.
+Test data (pasted to textarea, including spaces):
+underscore_case
+first_name
+Some_Variable 
+ calculate_AGE
+delayed_departure
+Should produce this output (5 separate console.log outputs):
+underscoreCase ✅
+firstName ✅✅
+someVariable ✅✅✅
+calculateAge ✅✅✅✅
+delayedDeparture ✅✅✅✅
+
+
+document.body.append(document.createElement('textarea'));
+let str = document.querySelector('textarea');
+let val;
+document.body.append(document.createElement('button'));
+const btn = document.querySelector('button');
+btn.addEventListener('click', () => {
+  console.log(str.value);
+  val = str.value;
+  console.log(val);
+});
+
+
+console.log(conversion('Some_Variable'));
+*/
