@@ -78,7 +78,7 @@ const displayMovements = function (movements) {
   });
 };
 
-displayMovements(account1.movements);
+// displayMovements(account1.movements);
 
 //using reduce to calculate balance
 const calcDisplayBalance = function (movements) {
@@ -89,7 +89,7 @@ const calcDisplayBalance = function (movements) {
   labelBalance.textContent = `${balance} Rs`;
 };
 
-calcDisplayBalance(account1.movements);
+// calcDisplayBalance(account1.movements);
 
 // using map to compute each of the username ids
 const createUserNames = function (acc) {
@@ -105,6 +105,81 @@ const createUserNames = function (acc) {
 };
 createUserNames(accounts);
 console.log(accounts);
+
+const calcDisplaySummary = function (arr) {
+  const inside = arr
+    .filter(item => item > 0)
+    .reduce((acc, item) => {
+      return acc + item;
+    }, 0);
+
+  labelSumIn.textContent = inside;
+
+  const outside = arr
+    .filter(item => item < 0)
+    .reduce((acc, item) => {
+      return acc + item;
+    }, 0);
+
+  labelSumOut.textContent = Math.abs(outside);
+
+  const interest = arr
+    .filter(item => item > 0)
+    .map(item => {
+      return (item * 1.2) / 100;
+    })
+    .filter((item, _, arr) => {
+      console.log(arr);
+      return item >= 1;
+    })
+    .reduce((acc, item) => {
+      return acc + item;
+    }, 0);
+
+  labelSumInterest.textContent = Math.trunc(interest);
+
+  // console.log(inside, outside, interest);
+  // const interst = arr.filter(item => item > 0).reduce((acc, item) => {});
+};
+
+// calcDisplaySummary(account1.movements);
+
+//Implementing login functionality
+let currentAccount;
+
+//event handler
+btnLogin.addEventListener('click', function (e) {
+  //prevent form from submiting
+  e.preventDefault();
+  currentAccount = accounts.find(item => {
+    return item.userName === inputLoginUsername.value;
+  });
+
+  if (currentAccount?.pin === Number(inputLoginPin.value)) {
+    //welcome message
+    labelWelcome.textContent = `Welcome back ${currentAccount.owner
+      .split(' ')
+      .slice(0, 1)}`;
+    containerApp.style.opacity = 100;
+
+    //clearing input fields soon after entering
+    inputLoginPin.value = '';
+    inputLoginUsername.value = '';
+    inputLoginPin.blur();
+
+    //display movements
+    displayMovements(currentAccount.movements);
+
+    //display balance
+    calcDisplayBalance(currentAccount.movements);
+
+    //display summary // i have kept same interest rate in all
+    calcDisplaySummary(currentAccount.movements);
+  }
+  console.log(`${inputLoginUsername.value}`);
+  console.log(currentAccount);
+});
+
 // const user = 'Steven Thomas Williams';
 //will no w chain using map method
 //  let a = ' ';
@@ -257,7 +332,7 @@ const checkDogs = function (arr, arr2) {
 
 checkDogs([3, 5, 2, 12, 7], [4, 1, 15, 8, 3]);
 checkDogs([9, 16, 6, 8, 3], [10, 5, 6, 1, 4]);
-*/
+
 //map
 const eurToUsd = 1.1;
 
@@ -298,6 +373,10 @@ const max = ram.reduce((acc, item) => {
 }, -1);
 
 console.log(max);
+
+const hari = [-2.3, 45, 6, 7];
+const aa = hari.find(item => item > 0);
+console.log(aa);
 /*
 Coding Challenge #2
 Let's go back to Julia and Kate's study about dogs. This time, they want to convert 
@@ -316,7 +395,14 @@ from other challenges how we calculate averages �)
 Test data:
 § Data 1: [5, 2, 4, 1, 15, 8, 3]
 § Data 2: [16, 6, 10, 5, 6, 1, 4]
-*/
+
+
+Coding Challenge #3
+Rewrite the 'calcAverageHumanAge' function from Challenge #2, but this time 
+as an arrow function, and using chaining!
+Test data:
+§ Data 1: [5, 2, 4, 1, 15, 8, 3]
+§ Data 2: [16, 6, 10, 5, 6, 1, 4
 
 const checkDogs = function (arr, arr2) {
   let arr1 = [...arr];
@@ -335,7 +421,8 @@ const checkDogs = function (arr, arr2) {
   console.log(arr1);
   console.log(both);
 };
-
+/*
+//w/o chaining
 const calcAverageHumanAge = function (arr) {
   const ans = arr.map((item, ind) => {
     return item <= 2 ? 2 * item : 16 + item * 4;
@@ -351,4 +438,20 @@ const calcAverageHumanAge = function (arr) {
   console.log(fil);
   console.log(avg);
 };
+
+// chainhingh
+const calcAverageHumanAge = function (arr) {
+  const ans = arr
+    .map((item, ind) => {
+      return item <= 2 ? 2 * item : 16 + item * 4;
+    })
+    .filter(item => {
+      return item >= 18;
+    })
+    .reduce((acc, item, val) => {
+      return acc + item / arr.length;
+    }, 0);
+  console.log(ans);
+};
 calcAverageHumanAge([5, 2, 4, 1, 15, 8, 3]);
+*/
