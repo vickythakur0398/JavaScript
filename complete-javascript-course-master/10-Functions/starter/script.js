@@ -202,7 +202,7 @@ Test data for bonus:
 § Data 1: [5, 2, 3]
 § Data 2: [1, 5, 3, 9, 6, 1]
 Hints: Use many of the tools you learned about in this and the last section 
-*/
+
 const poll = {
   question: 'What is your favourite programming language?',
   options: ['0: JavaScript', '1: Python', '2: Rust', '3: C++'],
@@ -256,3 +256,74 @@ btn.addEventListener('click', fun);
 
 // last usinmg call to display arrays
 // poll.displayResults.call({ answers: [5, 2, 3] }, 'string');
+*/
+/*
+console.log('checking');
+(function () {
+  console.log('i will be run once only');
+})();
+
+//observing closures
+
+const secureb = function () {
+  let passenger = 0;
+
+  return function () {
+    passenger++;
+    console.log(`${passenger} pasenger observing closure`);
+  };
+};
+
+const cbook = secureb();
+cbook();
+cbook();
+cbook();
+cbook();
+console.dir(cbook);
+
+// another example of clousre
+
+let cl;
+
+const g = function () {
+  const a = 24;
+  cl = function () {
+    console.log(a * 2);
+  };
+};
+
+const h = function () {
+  const a = 878;
+  cl = function () {
+    console.log(a * 2);
+  };
+};
+
+g();
+cl();
+
+h();
+cl();
+*/
+
+/*
+Coding Challenge #2
+This is more of a thinking challenge than a coding challenge �
+Your tasks:
+1. Take the IIFE below and at the end of the function, attach an event listener that 
+changes the color of the selected h1 element ('header') to blue, each time 
+the body element is clicked. Do not select the h1 element again!
+2. And now explain to yourself (or someone around you) why this worked! Take all 
+the time you need. Think about when exactly the callback function is executed, 
+and what that means for the variables involved in this example
+*/
+(function () {
+  const header = document.querySelector('h1');
+  header.style.color = 'red';
+})();
+
+const btn = document.querySelector('body');
+btn.addEventListener('click', function () {
+  const header = document.querySelector('h1');
+  header.style.color = 'blue';
+});
