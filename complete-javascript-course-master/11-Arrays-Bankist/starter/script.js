@@ -62,9 +62,11 @@ const inputCloseUsername = document.querySelector('.form__input--user');
 const inputClosePin = document.querySelector('.form__input--pin');
 
 // by me
-const displayMovements = function (movements) {
+const displayMovements = function (movements, sorts = false) {
   containerMovements.innerHTML = '';
-  movements.forEach(function (mov, i) {
+  const movs = sorts ? movements.slice().sort((a, b) => a - b) : movements;
+
+  movs.forEach(function (mov, i) {
     const type = mov > 0 ? 'deposit' : 'withdrawal';
 
     const html = ` <div class="movements__row">
@@ -81,12 +83,12 @@ const displayMovements = function (movements) {
 // displayMovements(account1.movements);
 
 //using reduce to calculate balance
-const calcDisplayBalance = function (movements) {
-  const balance = movements.reduce((acc, items) => {
+const calcDisplayBalance = function (acc) {
+  acc.balance = acc.movements.reduce((acc, items) => {
     return acc + items;
   }, 0);
 
-  labelBalance.textContent = `${balance} Rs`;
+  labelBalance.textContent = `${acc.balance} Rs`;
 };
 
 // calcDisplayBalance(account1.movements);
@@ -141,6 +143,19 @@ const calcDisplaySummary = function (arr) {
   // console.log(inside, outside, interest);
   // const interst = arr.filter(item => item > 0).reduce((acc, item) => {});
 };
+//making update ui
+const upddateUi = function (acc) {
+  //display movements
+  displayMovements(acc.movements);
+
+  //display balance
+  calcDisplayBalance(acc);
+
+  //display summary // i have kept same interest rate in all
+  calcDisplaySummary(acc.movements);
+
+  // sortMov(acc.movements);
+};
 
 // calcDisplaySummary(account1.movements);
 
@@ -167,17 +182,104 @@ btnLogin.addEventListener('click', function (e) {
     inputLoginUsername.value = '';
     inputLoginPin.blur();
 
-    //display movements
-    displayMovements(currentAccount.movements);
+    upddateUi(currentAccount);
 
-    //display balance
-    calcDisplayBalance(currentAccount.movements);
+    // //display movements
+    // displayMovements(currentAccount.movements);
 
-    //display summary // i have kept same interest rate in all
-    calcDisplaySummary(currentAccount.movements);
+    // //display balance
+    // calcDisplayBalance(currentAccount);
+
+    // //display summary // i have kept same interest rate in all
+    // calcDisplaySummary(currentAccount.movements);
   }
   console.log(`${inputLoginUsername.value}`);
   console.log(currentAccount);
+});
+
+// applyinh g transfer method
+
+btnTransfer.addEventListener('click', e => {
+  e.preventDefault();
+  const amount = Number(inputTransferAmount.value);
+  const receiverAcc = accounts.find(acc => {
+    // console.log('check');
+    return acc.userName === inputTransferTo.value;
+  });
+  inputTransferTo.value = '';
+  inputTransferAmount.value = '';
+
+  if (
+    amount > 0 &&
+    receiverAcc &&
+    currentAccount.balance >= amount &&
+    receiverAcc?.userName !== currentAccount.userName
+  ) {
+    currentAccount.movements.push(-amount);
+    // doing transfeer
+    receiverAcc.movements.push(amount);
+    console.log('transfer valid');
+    //uodating ui
+    upddateUi(currentAccount);
+  }
+
+  // if (to === accounts.userName) {
+  //   //proceeed and check if aount is valid
+  //   if (amount >= labelBalance.value) {
+  //     //add amount
+  //   } else {
+  //     alert('insufficient blance');
+  //   }
+  // } else {
+  //   alert('put right benificiary');
+  // }
+  console.log(amount, receiverAcc);
+});
+
+// clsomg account functionality
+btnClose.addEventListener('click', e => {
+  e.preventDefault();
+  const user = inputCloseUsername.value;
+  const pin = Number(inputClosePin.value);
+  if (currentAccount.userName === user && pin === currentAccount.pin) {
+    // find at which no. this current account is at
+    const index = accounts.findIndex(acc => {
+      return acc.userName === currentAccount.userName;
+    });
+    accounts.splice(index, 1);
+    //hide ui
+    containerApp.style.opacity = 0;
+    console.log(accounts);
+  }
+  user.value = pin.value = '';
+});
+
+// transferring loan
+btnLoan.addEventListener('click', e => {
+  e.preventDefault();
+
+  const amt = Number(inputLoanAmount.value);
+  console.log(amt);
+  if (
+    amt > 0 &&
+    currentAccount.movements.some(item => {
+      return item >= amt * 0.1;
+    })
+  ) {
+    currentAccount.movements.push(amt);
+    upddateUi(currentAccount);
+  }
+
+  inputLoanAmount.value = '';
+});
+
+//sorting
+// sorting movements
+let sorted = false;
+btnSort.addEventListener('click', e => {
+  e.preventDefault();
+  displayMovements(currentAccount.movements, !sorted);
+  sorted = !sorted;
 });
 
 // const user = 'Steven Thomas Williams';
