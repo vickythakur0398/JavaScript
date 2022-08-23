@@ -251,3 +251,27 @@ btnSort.addEventListener('click', function (e) {
 /////////////////////////////////////////////////
 /////////////////////////////////////////////////
 // LECTURES
+
+console.log(Number('23'));
+console.log(+'a');
+
+console.log(Number.parseFloat('3.7px'));
+console.log(Number.parseInt('3.7px'));
+
+console.log(Number.isNaN(20));
+console.log(Number.isNaN('a'));
+
+console.log(Number.isFinite('a'));
+
+//
+console.log(Math.PI);
+// to calculate radius of a circle
+console.log(Math.PI * Number.parseFloat('10px') ** 2);
+
+console.log(Math.trunc('23.4445'));
+console.log(Math.floor('23.4445'));
+
+console.log(Math.round(12.55));
+//creating date
+const now = new Date();
+console.log(now);
