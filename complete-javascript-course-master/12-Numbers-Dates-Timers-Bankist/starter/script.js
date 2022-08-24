@@ -362,3 +362,5 @@ const aa = setInterval(function () {
     clearInterval(aa);
   }
 }, 1000);
+
+console.log(Math.round(3.76));
