@@ -203,7 +203,7 @@ km/h, with a charge of 22%'
 you 'accelerate'! Hint: Review the definiton of polymorphism �
 Test data:
 § Data car 1: 'Tesla' going at 120 km/h, with a charge of 23
-*/
+
 
 const Car = function (make, speed) {
   this.make = make;
@@ -273,4 +273,77 @@ Student.prototype.constructor = Student;
 const vic = new Student('vicky', 1998, 'ECE');
 vic.introduce();
 vic.calAge();
+
+
+class Account {
+  constructor(owner, currency, pin) {
+    this.owner = owner;
+    this.pin = pin;
+    this.currency = currency;
+    this.movements = [];
+    this.locale = navigator.locale;
+  }
+
+  // public interface
+  deposit(val) {
+    this.movements.push(val);
+  }
+
+  withdraw(val) {
+    this.deposit(-val);
+  }
+}
+
+const acc1 = new Account('vicky', 'INR', 1111);
+console.log(acc1);
+
+// acc1.movements.push(250);
 */
+
+/*
+Your tasks:
+1. Re-create Challenge #3, but this time using ES6 classes: create an 'EVCl'
+child class of the 'CarCl' class
+2. Make the 'charge' property private
+3. Implement the ability to chain the 'accelerate' and 'chargeBattery'
+methods of this class, and also update the 'brake' method in the 'CarCl'
+class. Then experiment with chaining!
+Test data:
+§ Data car 1: 'Rivian' going at 120 km/h, with a charge of 23%
+GOOD LUCK 
+*/
+
+class Car {
+  constructor(make, speed) {
+    this.speed = speed;
+    this.make = make;
+  }
+
+  accelerate() {
+    this.speed = this.speed + 10;
+    console.log(`${this.make} has speed of ${this.speed}`);
+    return this;
+  }
+
+  break() {
+    this.speed = this.speed - 10;
+    console.log(`${this.make} has speed of ${this.speed}`);
+    return this;
+  }
+}
+
+class EV extends Car {
+  constructor(make, speed, charge) {
+    super(make, speed, charge);
+    this.charge = charge;
+  }
+
+  #chargeBattery(charge) {
+    this.charge = charge;
+    console.log(`${charge - 1}`);
+    return this;
+  }
+}
+
+const riv = new EV('vicky', 120, 23);
+riv.accelerate().break();
