@@ -32,6 +32,38 @@ document.addEventListener('keydown', function (e) {
   }
 });
 
+//page navigation m1
+// const links = document.querySelectorAll('.nav__link').forEach(function (item) {
+//   item.addEventListener('click', function (e) {
+//     e.preventDefault();
+//     const id = this.getAttribute('href');
+//     console.log(id);
+//     document.querySelector(id).scrollIntoView({
+//       behavior: 'smooth',
+//     });
+//   });
+// });
+
+//implementing navigation using event deligation using the concept of bubbling and capturing
+//1. adding event listener to common parennt element
+//2 determine what element originated that event
+
+document.querySelector('.nav__links').addEventListener('click', function (e) {
+  console.log(e.target);
+  e.preventDefault();
+  //matching
+  if (e.target.classList.contains('nav__link')) {
+    console.log('link');
+
+    const id = e.target.getAttribute('href');
+    console.log(id);
+    document.querySelector(id).scrollIntoView({
+      behavior: 'smooth',
+    });
+  }
+});
+////////////////////////////////////////////////
+
 console.log(document.documentElement);
 console.log(document.head);
 console.log(document.body);
@@ -95,3 +127,42 @@ const randomInt = (min, max) =>
 
 const randomColor = () =>
   `rgb(${randomInt(0, 255)},${randomInt(0, 255)},${randomInt(0, 255)})`;
+
+console.log(randomColor(0, 255));
+
+// document.querySelector('.nav__link').addEventListener('click', function (e) {
+//   this.style.backgroundColor = randomColor();
+// });
+
+// document.querySelector('.nav__links').addEventListener('click', function (e) {
+//   this.style.backgroundColor = randomColor();
+// });
+
+// document.querySelector('.nav').addEventListener('click', function (e) {
+//   this.style.backgroundColor = randomColor();
+// });
+
+// const h1 = document.querySelector('h1');
+// console.log(h1.querySelectorAll('.highlight'));
+// console.log(h1.childNodes);
+
+//tabeed operation
+
+const tabs = document.querySelectorAll('.operations__tab');
+const tabsContainer = document.querySelector('.operations__tab-container');
+const tabsContent = document.querySelectorAll('.operations__content');
+
+//using event deligation on common parent element
+tabsContainer.addEventListener('click', function (e) {
+  const clicked = e.target.closest('.operations__tab');
+  console.log(clicked);
+  if (!clicked) return;
+  tabs.forEach(t => t.classList.remove('.operations__tab--active'));
+  tabsContent.forEach(c => c.classList.remove(`operations__content--active`));
+  clicked.classList.add('operations__tab--active');
+
+  //activate content area
+  document
+    .querySelector(`.operations__content--${clicked.dataset.tab}`)
+    .classList.add('operations__content--active');
+});
