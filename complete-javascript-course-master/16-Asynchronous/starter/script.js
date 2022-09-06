@@ -4,6 +4,10 @@ const btn = document.querySelector('.btn-country');
 const countriesContainer = document.querySelector('.countries');
 
 ///////////////////////////////////////
+const renderError = function (msg) {
+  countriesContainer.insertAdjacentText('beforeend', msg);
+  // countriesContainer.style.opacity = 1;
+};
 const renderCountry = function (data) {
   const html = `<article class="country">
   <img class="country__img" src="${data.flag}" />
@@ -19,8 +23,9 @@ const renderCountry = function (data) {
 </article>`;
 
   countriesContainer.insertAdjacentHTML('beforeend', html);
-  countriesContainer.style.opacity = 1;
+  // countriesContainer.style.opacity = 1;
 };
+/*
 const getCountryNeighbour = function (country) {
   const request = new XMLHttpRequest();
   request.open('GET', `https://restcountries.com/v2/name/${country}`);
@@ -61,3 +66,50 @@ const getCountryNeighbour = function (country) {
 };
 // getCountryNeighbour('kenya');
 getCountryNeighbour('india');
+*/
+
+// const request = fetch('https://restcountries.com/v2/name/India');
+// console.log(request);
+
+// const getCountryData = function (country) {
+//   fetch(`https://restcountries.com/v2/name/${country}`)
+//     .then(function (response) {
+//       console.log(response);
+//       return response.json();
+//     })
+//     .then(function (data) {
+//       console.log(data);
+//       renderCountry(data[1]);
+//     });
+// };
+
+//using arrow to look cleaner
+const getCountryData = function (country) {
+  fetch(`https://restcountries.com/v2/name/${country}`)
+    .then(response => response.json())
+    .then(data => {
+      renderCountry(data[1]);
+      const neighbour = data[1].borders[0];
+
+      if (!neighbour) return;
+
+      //country neighbout
+      return fetch(`https://restcountries.com/v2/alpha/${neighbour}`);
+    })
+    .then(response => response.json())
+    .then(data => renderCountry(data))
+    // .catch(err => alert(err));
+    .catch(err => {
+      console.error(`${err}`);
+      renderError(`something went wrong ${err.message}, okay try again`);
+    })
+    .finally(() => {
+      countriesContainer.style.opacity = 1;
+    });
+};
+
+btn.addEventListener('click', function () {
+  getCountryData('india');
+});
+
+getCountryData('ghdf');
